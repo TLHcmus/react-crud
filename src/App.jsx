@@ -1,35 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Container } from "react-bootstrap";
+import "./App.scss";
+import AddNewUserModal from "./components/AddNewUserModal";
+import Header from "./components/Header";
+import TableUsers from "./components/TableUsers";
+import { useState } from "react";
+import { UserProvider } from "./contexts/UserContext";
+import { ToastContainer, Bounce } from "react-toastify";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isShowAddUserModal, setIsShowAddUserModal] = useState(false);
+
+  const handleClose = function () {
+    setIsShowAddUserModal(false);
+  };
+
+  const handleAddUserClick = function () {
+    setIsShowAddUserModal(true);
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="app-container">
+        <Header />
+        <Container>
+          <div className="my-3 d-flex justify-content-between">
+            <h3>User List</h3>
+            <button className="btn btn-success" onClick={handleAddUserClick}>
+              Add new user
+            </button>
+          </div>
+          <UserProvider>
+            <TableUsers />
+
+            <AddNewUserModal
+              show={isShowAddUserModal}
+              handleClose={handleClose}
+            />
+          </UserProvider>
+        </Container>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
