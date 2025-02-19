@@ -24,8 +24,6 @@ const TableUsers = function () {
   const [sortOrder, setSortOrder] = useState("asc");
   const [sortField, setSortFiled] = useState("id");
 
-  const [searchQuery, setSearchQuery] = useState("");
-
   useEffect(() => {
     getUsers(currentPage);
   }, [currentPage]);
@@ -65,21 +63,19 @@ const TableUsers = function () {
     setUsers((prev) => _.orderBy(prev, sortField, sortOrder));
   };
 
-  const handleSearch = (event) => {
+  const handleSearch = _.debounce((event) => {
     const query = event.target.value;
     if (!query) {
       getUsers(1);
     }
     setUsers((prev) => prev.filter((user) => user.email.includes(query)));
-    setSearchQuery(event.target.value);
-  };
+  }, 300);
   return (
     <>
       <div className="col-4 my-2">
         <input
           className="form-control"
           placeholder="Search for an user by email..."
-          value={searchQuery}
           onChange={handleSearch}
         />
       </div>
