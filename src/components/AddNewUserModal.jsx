@@ -7,7 +7,7 @@ import UserContext from "../contexts/UserContext";
 import { toast } from "react-toastify";
 
 const AddNewUserModal = function (props) {
-  const { users, setUsers } = useContext(UserContext);
+  const { setUsers } = useContext(UserContext);
 
   const [name, setName] = useState("");
   const [job, setJob] = useState("");
@@ -24,7 +24,6 @@ const AddNewUserModal = function (props) {
     if (res && res.id) {
       // Add created user to user List
       setUsers((prev) => [{ first_name: user.name, id: res.id }, ...prev]);
-      console.log("check res: ", res);
       handleClose();
       setName("");
       setJob("");

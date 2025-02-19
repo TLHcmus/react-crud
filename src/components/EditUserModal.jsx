@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import { putUpdateUser } from "../services/UserService";
 
 const EditUserModal = function (props) {
-  const { users, setUsers } = useContext(UserContext);
+  const { setUsers } = useContext(UserContext);
 
   const [name, setName] = useState("");
   const [job, setJob] = useState("");

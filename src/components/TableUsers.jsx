@@ -6,6 +6,7 @@ import { fetchAllUser } from "../services/UserService";
 import { useState, useEffect, useContext } from "react";
 import UserContext from "../contexts/UserContext";
 import EditUserModal from "./EditUserModal";
+import RemoveUserModal from "./RemoveUserModal";
 
 const TableUsers = function () {
   const { users, setUsers } = useContext(UserContext);
@@ -14,7 +15,10 @@ const TableUsers = function () {
   const [currentPage, setCurrentPage] = useState(1);
 
   const [isShowEditUserModal, setIsShowEditUserModal] = useState(false);
-  const [userToEdit, setUserToEdit] = useState({})
+  const [selectedUser, setSelectedUser] = useState({});
+
+  const [isShowRemoveUserModal, setIsShowRemoveUserModal] = useState(false);
+
   useEffect(() => {
     getUsers(currentPage);
   }, [currentPage]);
@@ -28,18 +32,23 @@ const TableUsers = function () {
     }
   };
 
-  const handleClose = function (){
+  const handleClose = function () {
     setIsShowEditUserModal(false);
-  }
+    setIsShowRemoveUserModal(false);
+  };
 
   const handlePageClick = function (event) {
     setCurrentPage(+event.selected + 1);
   };
 
   const handleEditUser = function (user) {
-    console.log(user);
-    setUserToEdit(user);
+    setSelectedUser(user);
     setIsShowEditUserModal(true);
+  };
+
+  const handleRemoveUser = function (user) {
+    setSelectedUser(user);
+    setIsShowRemoveUserModal(true);
   };
   return (
     <>
@@ -63,7 +72,12 @@ const TableUsers = function () {
                 <td>{user.first_name}</td>
                 <td>{user.last_name}</td>
                 <td>
-                  <button className="btn btn-danger mx-3">Delete</button>
+                  <button
+                    className="btn btn-danger mx-3"
+                    onClick={() => handleRemoveUser(user)}
+                  >
+                    Remove
+                  </button>
                   <button
                     className="btn btn-primary"
                     onClick={() => handleEditUser(user)}
@@ -96,7 +110,16 @@ const TableUsers = function () {
         renderOnZeroPageCount={null}
       />
 
-      <EditUserModal show={isShowEditUserModal} handleClose ={handleClose} userToEdit = {userToEdit} />
+      <EditUserModal
+        show={isShowEditUserModal}
+        handleClose={handleClose}
+        userToEdit={selectedUser}
+      />
+      <RemoveUserModal
+        show={isShowRemoveUserModal}
+        handleClose={handleClose}
+        userToRemove={selectedUser}
+      />
     </>
   );
 };

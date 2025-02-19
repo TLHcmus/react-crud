@@ -12,4 +12,8 @@ const putUpdateUser = function (user, userId){
   return axios.put(`user/${userId}`, user)
 }
 
-export { fetchAllUser, postCreateUser, putUpdateUser };
+const deleteRemoveUser = function (userId){
+  return axios.delete(`user/${userId}`)
+}
+
+export { fetchAllUser, postCreateUser, putUpdateUser, deleteRemoveUser };
