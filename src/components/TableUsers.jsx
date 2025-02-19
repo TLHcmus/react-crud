@@ -1,12 +1,14 @@
 import Container from "react-bootstrap/Container";
 import Table from "react-bootstrap/Table";
 import ReactPaginate from "react-paginate";
+import _ from "lodash";
 
 import { fetchAllUser } from "../services/UserService";
 import { useState, useEffect, useContext } from "react";
 import UserContext from "../contexts/UserContext";
 import EditUserModal from "./EditUserModal";
 import RemoveUserModal from "./RemoveUserModal";
+import "./TableUsers.scss";
 
 const TableUsers = function () {
   const { users, setUsers } = useContext(UserContext);
@@ -19,11 +21,16 @@ const TableUsers = function () {
 
   const [isShowRemoveUserModal, setIsShowRemoveUserModal] = useState(false);
 
+  const [sortOrder, setSortOrder] = useState("asc");
+  const [sortField, setSortFiled] = useState("id");
+
+  const [searchQuery, setSearchQuery] = useState("");
+
   useEffect(() => {
     getUsers(currentPage);
   }, [currentPage]);
 
-  const getUsers = async function (page) {
+  const getUsers = async (page) => {
     const res = await fetchAllUser(page);
     if (res && res.data) {
       setUsers(res.data);
@@ -32,32 +39,84 @@ const TableUsers = function () {
     }
   };
 
-  const handleClose = function () {
+  const handleClose = () => {
     setIsShowEditUserModal(false);
     setIsShowRemoveUserModal(false);
   };
 
-  const handlePageClick = function (event) {
+  const handlePageClick = (event) => {
     setCurrentPage(+event.selected + 1);
   };
 
-  const handleEditUser = function (user) {
+  const handleEditUser = (user) => {
     setSelectedUser(user);
     setIsShowEditUserModal(true);
   };
 
-  const handleRemoveUser = function (user) {
+  const handleRemoveUser = (user) => {
     setSelectedUser(user);
     setIsShowRemoveUserModal(true);
   };
+
+  const handleSort = (field, order) => {
+    setSortFiled(field);
+    setSortOrder(order);
+
+    setUsers((prev) => _.orderBy(prev, sortField, sortOrder));
+  };
+
+  const handleSearch = (event) => {
+    const query = event.target.value;
+    if (!query) {
+      getUsers(1);
+    }
+    setUsers((prev) => prev.filter((user) => user.email.includes(query)));
+    setSearchQuery(event.target.value);
+  };
   return (
     <>
+      <div className="col-4 my-2">
+        <input
+          className="form-control"
+          placeholder="Search for an user by email..."
+          value={searchQuery}
+          onChange={handleSearch}
+        />
+      </div>
       <Table striped bordered hover size="sm">
         <thead>
           <tr>
-            <th>Id</th>
+            <th>
+              <div className="sort-header d-flex justify-content-between">
+                <span>ID</span>
+                <div>
+                  <i
+                    className="fa-solid fa-arrow-down mx-1"
+                    onClick={() => handleSort("id", "desc")}
+                  ></i>
+                  <i
+                    className="fa-solid fa-arrow-up"
+                    onClick={() => handleSort("id", "asc")}
+                  ></i>
+                </div>
+              </div>
+            </th>
             <th>Email</th>
-            <th>First Name</th>
+            <th>
+              <div className="sort-header d-flex justify-content-between">
+                <span>First Name</span>
+                <div>
+                  <i
+                    className="fa-solid fa-arrow-down mx-1"
+                    onClick={() => handleSort("first_name", "desc")}
+                  ></i>
+                  <i
+                    className="fa-solid fa-arrow-up"
+                    onClick={() => handleSort("first_name", "asc")}
+                  ></i>
+                </div>
+              </div>
+            </th>
             <th>Last Name</th>
             <th>Actions</th>
           </tr>

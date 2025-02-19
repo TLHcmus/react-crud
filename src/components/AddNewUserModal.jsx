@@ -14,7 +14,7 @@ const AddNewUserModal = function (props) {
 
   const { show, handleClose } = props;
 
-  const handleAddUser = async function () {
+  const handleAddUser = async () => {
     // create user
     const user = {
       name,

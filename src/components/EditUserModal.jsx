@@ -21,7 +21,7 @@ const EditUserModal = function (props) {
     }
   }, [userToEdit]);
 
-  const handleEditUser = async function () {
+  const handleEditUser = async () => {
     const user = {
       name,
       job,

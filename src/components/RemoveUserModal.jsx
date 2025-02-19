@@ -7,7 +7,7 @@ const RemoveUserModal = function (props) {
   const { setUsers } = useContext(UserContext);
   const { show, handleClose, userToRemove } = props;
 
-  const handleRemoveUser = async function () {
+  const handleRemoveUser = async () => {
     const res = await deleteRemoveUser(userToRemove.id);
     if (res && +res.status === 204) {
       setUsers((prev) => prev.filter((user) => user.id !== userToRemove.id));
