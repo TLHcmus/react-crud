@@ -74,3 +74,8 @@
     margin-right: 4px;
   }
 }
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-webkit-contacts-auto-fill-button {
+  display: none;
+}
