@@ -12,7 +12,6 @@ import "./TableUsers.scss";
 
 const TableUsers = function () {
   const { users, setUsers } = useContext(UsersContext);
-  const [totalUsers, setTotalUsers] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -32,7 +31,6 @@ const TableUsers = function () {
     const res = await fetchAllUser(page);
     if (res && res.data) {
       setUsers(res.data);
-      setTotalUsers(res.total);
       setTotalPages(res.total_pages);
     }
   };
@@ -64,7 +62,7 @@ const TableUsers = function () {
   };
 
   const handleSearch = _.debounce((event) => {
-    const query = event.target.value;
+    const query = event.target.value.trim();
     if (!query) {
       getUsers(1);
     }

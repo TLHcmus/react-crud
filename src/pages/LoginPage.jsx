@@ -23,11 +23,13 @@ const LoginPage = function () {
     }
   }, []);
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const trimmedEmail = email.trim();
     if (loading) return;
     try {
       setLoading(true);
-      const res = await postLogin(email, password);
+      const res = await postLogin(trimmedEmail, password);
       if (res && res.token) {
         login(email, res.token);
         navigate("/");
@@ -38,12 +40,15 @@ const LoginPage = function () {
       setError("Username or password dosen't match our records. Try again.");
     } finally {
       setLoading(false);
+      setEmail(trimmedEmail);
     }
   };
   return (
-    <div className="login-container col-12 col-sm-4">
+    <form className="login-container col-12 col-sm-4" onSubmit={handleLogin}>
       <div className="header">Log in</div>
-      <div className="text">Email or username</div>
+      <div className="text">
+        Email or username (eve.holt@reqres.in), any password would work
+      </div>
       <input
         type="text"
         placeholder="Email or username"
@@ -74,11 +79,10 @@ const LoginPage = function () {
         type="submit"
         className={email && password ? "active" : ""}
         disabled={!email || !password || loading}
-        onClick={handleLogin}
       >
         {loading ? <i className="fas fa-circle-notch fa-spin"></i> : "Log in"}
       </button>
-    </div>
+    </form>
   );
 };
 

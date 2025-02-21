@@ -67,14 +67,6 @@
 //   }
 // }
 
-.button-group {
-  display: flex;
-  gap: 0 10px;
-  i {
-    margin-right: 4px;
-  }
-}
-
 input[type="password"]::-ms-reveal,
 input[type="password"]::-webkit-contacts-auto-fill-button {
   display: none;

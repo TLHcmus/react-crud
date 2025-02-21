@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { CSVLink } from "react-csv";
 import Papa from "papaparse";
 import UserContext from "../contexts/UsersContext";
+import "./UsersPage.scss";
 
 import TableUsers from "../components/TableUsers";
 import AddNewUserModal from "../components/AddNewUserModal";
