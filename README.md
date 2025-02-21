@@ -1,5 +1,18 @@
 # CRUD App
 
-Simple CRUD App that's allow working with users using API from https://reqres.in/, also support export and import csv file
+Simple app using API from: https://reqres/in/ with the following features:
 
-Tech used: React with JS and Bootstrap.
+1. Login
+2. Add User
+3. Edit User
+4. Remove User
+5. Display all Users
+6. Filter User with Email
+7. Sort User by ID and First Name
+8. Import Users from CSV file
+9. Export Users to CSV file
+
+**Tech used:**
+
+- React with Javascript
+- Bootstrap
