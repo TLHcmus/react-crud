@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { CSVLink } from "react-csv";
 import Papa from "papaparse";
-import UserContext from "../contexts/UserContext";
+import UserContext from "../contexts/UsersContext";
 
 import TableUsers from "../components/TableUsers";
 import AddNewUserModal from "../components/AddNewUserModal";
@@ -41,11 +41,10 @@ const UsersPage = function () {
 
   const hanldeImportCSV = (event) => {
     const file = event.target.files[0];
-    console.log("Check file", file);
     if (!file) return;
     // Check for file type
     if (file.type !== "text/csv") {
-      toast.error("Only accept CSV type!");
+      toast.error("Only accept CSV file!");
       return;
     }
 

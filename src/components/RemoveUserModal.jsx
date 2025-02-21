@@ -1,10 +1,10 @@
 import { Modal, Button } from "react-bootstrap";
 import { deleteRemoveUser } from "../services/UserService";
-import UserContext from "../contexts/UserContext";
+import UsersContext from "../contexts/UsersContext";
 import { useContext } from "react";
 import { toast } from "react-toastify";
 const RemoveUserModal = function (props) {
-  const { setUsers } = useContext(UserContext);
+  const { setUsers } = useContext(UsersContext);
   const { show, handleClose, userToRemove } = props;
 
   const handleRemoveUser = async () => {

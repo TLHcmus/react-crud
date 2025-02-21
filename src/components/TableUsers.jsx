@@ -5,13 +5,13 @@ import _ from "lodash";
 
 import { fetchAllUser } from "../services/UserService";
 import { useState, useEffect, useContext } from "react";
-import UserContext from "../contexts/UserContext";
+import UsersContext from "../contexts/UsersContext";
 import EditUserModal from "./EditUserModal";
 import RemoveUserModal from "./RemoveUserModal";
 import "./TableUsers.scss";
 
 const TableUsers = function () {
-  const { users, setUsers } = useContext(UserContext);
+  const { users, setUsers } = useContext(UsersContext);
   const [totalUsers, setTotalUsers] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);

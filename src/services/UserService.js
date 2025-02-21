@@ -8,12 +8,16 @@ const postCreateUser = function (user) {
   return axios.post("users", user);
 };
 
-const putUpdateUser = function (user, userId){
-  return axios.put(`user/${userId}`, user)
-}
+const putUpdateUser = function (user, userId) {
+  return axios.put(`user/${userId}`, user);
+};
 
-const deleteRemoveUser = function (userId){
-  return axios.delete(`user/${userId}`)
-}
+const deleteRemoveUser = function (userId) {
+  return axios.delete(`user/${userId}`);
+};
 
-export { fetchAllUser, postCreateUser, putUpdateUser, deleteRemoveUser };
+const postLogin = function (email, password) {
+  return axios.post("login", { email, password });
+};
+
+export { fetchAllUser, postCreateUser, putUpdateUser, deleteRemoveUser, postLogin };

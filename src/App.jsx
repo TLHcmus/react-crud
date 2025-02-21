@@ -1,24 +1,16 @@
 import "./App.scss";
-
 import { ToastContainer, Bounce } from "react-toastify";
 
-import { Route, Routes } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import UsersPage from "./pages/UsersPage";
 import Header from "./components/Header";
-import LoginPage from "./pages/LoginPage";
 import { Container } from "react-bootstrap";
 
+import AppRoute from "./routes/AppRoute";
 function App() {
   return (
     <>
       <Header />
       <Container>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/users" element={<UsersPage />} />
-          <Route path="/login" element={<LoginPage />} />
-        </Routes>
+        <AppRoute />
       </Container>
 
       <ToastContainer

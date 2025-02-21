@@ -3,11 +3,11 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 import { postCreateUser } from "../services/UserService";
-import UserContext from "../contexts/UserContext";
+import UsersContext from "../contexts/UsersContext";
 import { toast } from "react-toastify";
 
 const AddNewUserModal = function (props) {
-  const { setUsers } = useContext(UserContext);
+  const { setUsers } = useContext(UsersContext);
 
   const [name, setName] = useState("");
   const [job, setJob] = useState("");

@@ -2,13 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-import UserContext from "../contexts/UserContext";
+import UsersContext from "../contexts/UsersContext";
 import { toast } from "react-toastify";
 
 import { putUpdateUser } from "../services/UserService";
 
 const EditUserModal = function (props) {
-  const { setUsers } = useContext(UserContext);
+  const { setUsers } = useContext(UsersContext);
 
   const [name, setName] = useState("");
   const [job, setJob] = useState("");
