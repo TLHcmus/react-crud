@@ -83,7 +83,7 @@ const UsersPage = function () {
 
   return (
     <>
-      <div className="my-3 d-flex justify-content-between">
+      <div className="my-3 d-sm-flex justify-content-between">
         <h3>User List</h3>
         <div className="button-group">
           <label htmlFor="import_csv" className="btn btn-warning">

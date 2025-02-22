@@ -70,109 +70,113 @@ const TableUsers = function () {
   }, 300);
   return (
     <>
-      <div className="col-4 my-2">
+      <div className="col-12 col-sm-4 my-2">
         <input
           className="form-control"
           placeholder="Search for an user by email..."
           onChange={handleSearch}
         />
       </div>
-      <Table striped bordered hover size="sm">
-        <thead>
-          <tr>
-            <th>
-              <div className="sort-header d-flex justify-content-between">
-                <span>ID</span>
-                <div>
-                  <i
-                    className="fa-solid fa-arrow-down mx-1"
-                    onClick={() => handleSort("id", "desc")}
-                  ></i>
-                  <i
-                    className="fa-solid fa-arrow-up"
-                    onClick={() => handleSort("id", "asc")}
-                  ></i>
+      <div className="table-responsive">
+        <Table striped bordered hover size="sm">
+          <thead>
+            <tr>
+              <th>
+                <div className="sort-header d-flex justify-content-between">
+                  <span>ID</span>
+                  <div>
+                    <i
+                      className="fa-solid fa-arrow-down mx-1"
+                      onClick={() => handleSort("id", "desc")}
+                    ></i>
+                    <i
+                      className="fa-solid fa-arrow-up"
+                      onClick={() => handleSort("id", "asc")}
+                    ></i>
+                  </div>
                 </div>
-              </div>
-            </th>
-            <th>Email</th>
-            <th>
-              <div className="sort-header d-flex justify-content-between">
-                <span>First Name</span>
-                <div>
-                  <i
-                    className="fa-solid fa-arrow-down mx-1"
-                    onClick={() => handleSort("first_name", "desc")}
-                  ></i>
-                  <i
-                    className="fa-solid fa-arrow-up"
-                    onClick={() => handleSort("first_name", "asc")}
-                  ></i>
+              </th>
+              <th>Email</th>
+              <th>
+                <div className="sort-header d-flex justify-content-between">
+                  <span>First Name</span>
+                  <div>
+                    <i
+                      className="fa-solid fa-arrow-down mx-1"
+                      onClick={() => handleSort("first_name", "desc")}
+                    ></i>
+                    <i
+                      className="fa-solid fa-arrow-up"
+                      onClick={() => handleSort("first_name", "asc")}
+                    ></i>
+                  </div>
                 </div>
-              </div>
-            </th>
-            <th>Last Name</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users &&
-            users.length > 0 &&
-            users.map((user, index) => (
-              <tr key={`user-${index}`}>
-                <td>{user.id}</td>
-                <td>{user.email}</td>
-                <td>{user.first_name}</td>
-                <td>{user.last_name}</td>
-                <td>
-                  <button
-                    className="btn btn-danger mx-3"
-                    onClick={() => handleRemoveUser(user)}
-                  >
-                    Remove
-                  </button>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => handleEditUser(user)}
-                  >
-                    Edit
-                  </button>
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </Table>
-      <ReactPaginate
-        nextLabel="next >"
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={3}
-        marginPagesDisplayed={2}
-        pageCount={totalPages}
-        previousLabel="< previous"
-        pageClassName="page-item"
-        pageLinkClassName="page-link"
-        previousClassName="page-item"
-        previousLinkClassName="page-link"
-        nextClassName="page-item"
-        nextLinkClassName="page-link"
-        breakLabel="..."
-        breakClassName="page-item"
-        breakLinkClassName="page-link"
-        containerClassName="pagination"
-        activeClassName="active"
-        renderOnZeroPageCount={null}
-      />
+              </th>
+              <th>Last Name</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users &&
+              users.length > 0 &&
+              users.map((user, index) => (
+                <tr key={`user-${index}`}>
+                  <td>{user.id}</td>
+                  <td>{user.email}</td>
+                  <td>{user.first_name}</td>
+                  <td>{user.last_name}</td>
+                  <td className="d-flex">
+                    <button
+                      className="btn btn-danger mx-1"
+                      onClick={() => handleRemoveUser(user)}
+                    >
+                      Remove
+                    </button>
+                    <button
+                      className="btn btn-primary mx-1 "
+                      onClick={() => handleEditUser(user)}
+                    >
+                      Edit
+                    </button>
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </Table>
+      </div>
+      <div className="d-flex justify-content-center mt-3">
+        <ReactPaginate
+          nextLabel="next >"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={3}
+          marginPagesDisplayed={2}
+          pageCount={totalPages}
+          previousLabel="< previous"
+          pageClassName="page-item"
+          pageLinkClassName="page-link"
+          previousClassName="page-item"
+          previousLinkClassName="page-link"
+          nextClassName="page-item"
+          nextLinkClassName="page-link"
+          breakLabel="..."
+          breakClassName="page-item"
+          breakLinkClassName="page-link"
+          containerClassName="pagination"
+          activeClassName="active"
+          renderOnZeroPageCount={null}
+        />
 
-      <EditUserModal
-        show={isShowEditUserModal}
-        handleClose={handleClose}
-        userToEdit={selectedUser}
-      />
-      <RemoveUserModal
-        show={isShowRemoveUserModal}
-        handleClose={handleClose}
-        userToRemove={selectedUser}
-      />
+        <EditUserModal
+          show={isShowEditUserModal}
+          handleClose={handleClose}
+          userToEdit={selectedUser}
+        />
+        <RemoveUserModal
+          show={isShowRemoveUserModal}
+          handleClose={handleClose}
+          userToRemove={selectedUser}
+        />
+      </div>
     </>
   );
 };
