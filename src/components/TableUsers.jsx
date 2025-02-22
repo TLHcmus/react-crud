@@ -84,7 +84,7 @@ const TableUsers = function () {
               <th>
                 <div className="sort-header d-flex justify-content-between">
                   <span>ID</span>
-                  <div>
+                  <div className="d-flex align-items-center">
                     <i
                       className="fa-solid fa-arrow-down mx-1"
                       onClick={() => handleSort("id", "desc")}
@@ -100,7 +100,7 @@ const TableUsers = function () {
               <th>
                 <div className="sort-header d-flex justify-content-between">
                   <span>First Name</span>
-                  <div>
+                  <div className="d-flex align-items-center">
                     <i
                       className="fa-solid fa-arrow-down mx-1"
                       onClick={() => handleSort("first_name", "desc")}
