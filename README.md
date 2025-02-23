@@ -1,6 +1,6 @@
 # CRUD App
 
-Simple app using API from: https://reqres/in/ with the following features:
+Simple React app using API from: https://reqres/in/ with the following features:
 
 1. Login
 2. Add User
@@ -11,8 +11,3 @@ Simple app using API from: https://reqres/in/ with the following features:
 7. Sort User by ID and First Name
 8. Import Users from CSV file
 9. Export Users to CSV file
-
-**Tech used:**
-
-- React with Javascript
-- Bootstrap
