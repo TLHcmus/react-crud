@@ -1,6 +1,6 @@
 # CRUD App
 
-Simple React app using API from: https://reqres/in/ with the following features:
+Simple React app using API from: https://reqres.in/ with the following features:
 
 1. Login
 2. Add User
