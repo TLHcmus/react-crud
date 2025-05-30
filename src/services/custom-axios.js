@@ -1,7 +1,10 @@
-import axios from "axios";
+import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: "https://reqres.in/api/",
+  baseURL: 'https://reqres.in/api/',
+  headers: {
+    'x-api-key': 'reqres-free-v1',
+  },
 });
 
 // Add a response interceptor
@@ -11,7 +14,7 @@ instance.interceptors.response.use(
     // Do something with response data
 
     // If request method is delete
-    if (response.config.method === "delete") {
+    if (response.config.method === 'delete') {
       return response;
     }
     return response.data;

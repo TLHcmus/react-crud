@@ -1,11 +1,11 @@
-import axios from "./custom-axios";
+import axios from './custom-axios';
 
 const fetchAllUser = function (page) {
   return axios.get(`users?page=${page}`);
 };
 
 const postCreateUser = function (user) {
-  return axios.post("users", user);
+  return axios.post('users', user);
 };
 
 const putUpdateUser = function (user, userId) {
@@ -17,7 +17,13 @@ const deleteRemoveUser = function (userId) {
 };
 
 const postLogin = function (email, password) {
-  return axios.post("login", { email, password });
+  return axios.post('login', { email, password });
 };
 
-export { fetchAllUser, postCreateUser, putUpdateUser, deleteRemoveUser, postLogin };
+export {
+  fetchAllUser,
+  postCreateUser,
+  putUpdateUser,
+  deleteRemoveUser,
+  postLogin,
+};

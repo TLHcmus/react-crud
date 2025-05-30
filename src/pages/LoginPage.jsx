@@ -1,12 +1,12 @@
-import { useContext, useEffect, useState } from "react";
-import "./LoginPage.scss";
-import { postLogin } from "../services/UserService";
-import { useNavigate } from "react-router-dom";
-import AuthContext from "../contexts/AuthContext";
+import { useContext, useEffect, useState } from 'react';
+import './LoginPage.scss';
+import { postLogin } from '../services/UserService';
+import { useNavigate } from 'react-router-dom';
+import AuthContext from '../contexts/AuthContext';
 
 const LoginPage = function () {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const [loading, setLoading] = useState(false);
 
@@ -17,9 +17,9 @@ const LoginPage = function () {
   const navigate = useNavigate();
 
   useEffect(() => {
-    let token = localStorage.getItem("token");
+    let token = localStorage.getItem('token');
     if (token) {
-      navigate("/");
+      navigate('/');
     }
   }, []);
 
@@ -32,11 +32,11 @@ const LoginPage = function () {
       const res = await postLogin(trimmedEmail, password);
       if (res && res.token) {
         login(email, res.token);
-        navigate("/");
+        navigate('/');
       } else {
-        throw new Error("No token received!");
+        throw new Error('No token received!');
       }
-    } catch (error) {
+    } catch (e) {
       setError("Username or password dosen't match our records. Try again.");
     } finally {
       setLoading(false);
@@ -59,7 +59,7 @@ const LoginPage = function () {
       />
       <div className="password-textbox">
         <input
-          type={isShowPassword ? "text" : "password"}
+          type={isShowPassword ? 'text' : 'password'}
           placeholder="Password"
           value={password}
           onChange={(e) => {
@@ -67,7 +67,7 @@ const LoginPage = function () {
           }}
         />
         <i
-          className={`fa-solid fa-eye${isShowPassword ? "" : "-slash"}`}
+          className={`fa-solid fa-eye${isShowPassword ? '' : '-slash'}`}
           onClick={() => {
             setIsShowPassword((prev) => !prev);
           }}
@@ -77,10 +77,10 @@ const LoginPage = function () {
 
       <button
         type="submit"
-        className={email && password ? "active" : ""}
+        className={email && password ? 'active' : ''}
         disabled={!email || !password || loading}
       >
-        {loading ? <i className="fas fa-circle-notch fa-spin"></i> : "Log in"}
+        {loading ? <i className="fas fa-circle-notch fa-spin"></i> : 'Log in'}
       </button>
     </form>
   );

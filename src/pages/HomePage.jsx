@@ -4,8 +4,8 @@ const HomePage = function () {
       <h5>CRUD App </h5>
       <br />
       <p>
-        Simple app using API from:{" "}
-        <a href="https://reqres/in/">https://reqres/in/</a> with the following
+        Simple React app using API from:{' '}
+        <a href="https://reqres.in/">https://reqres.in/</a> with the following
         features:
       </p>
       <ul>
@@ -18,11 +18,6 @@ const HomePage = function () {
         <li>7. Sort User by ID and First Name</li>
         <li>8. Import Users from CSV file</li>
         <li>9. Export Users to CSV file</li>
-      </ul>
-      <b>Tech used:</b>
-      <ul>
-        <li>React with Javascript</li>
-        <li>Bootstrap</li>
       </ul>
     </div>
   );
